@@ -1,6 +1,7 @@
 package me.william278.huskhomes.expansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.william278.huskhomes2.HuskHomes;
 import me.william278.huskhomes2.api.HuskHomesAPI;
 import me.william278.huskhomes2.teleport.points.Home;
 import org.bukkit.Bukkit;
@@ -52,6 +53,7 @@ public class HuskHomesExpansion extends PlaceholderExpansion {
         if (offlinePlayer == null || !offlinePlayer.isOnline()) { return "Player not online"; }
 
         Player player = offlinePlayer.getPlayer();
+        if (player == null) return null;
         switch (params) {
             case "homes_set":
                 return String.valueOf(HuskHomesAPI.getInstance().getHomeCount(player));
@@ -81,6 +83,8 @@ public class HuskHomesExpansion extends PlaceholderExpansion {
                     }
                 }
                 return publicHomeList.toString();
+            case "tpa_ignore":
+                return HuskHomes.isIgnoringTeleportRequests(player.getUniqueId()) + "";
             default:
                 return null;
         }
