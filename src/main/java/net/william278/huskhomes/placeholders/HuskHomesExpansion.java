@@ -43,20 +43,6 @@ public class HuskHomesExpansion extends PlaceholderExpansion {
         return "HuskHomes";
     }
 
-    @Override
-    public boolean canRegister() {
-        return Bukkit.getPluginManager().getPlugin(getRequiredPlugin()) != null;
-    }
-
-    @Override
-    public boolean register() {
-        Plugin huskHomes = Bukkit.getPluginManager().getPlugin(getRequiredPlugin());
-        if (huskHomes != null) {
-            return super.register();
-        }
-        return false;
-    }
-
     @NotNull
     private String getBooleanValue(final boolean bool) {
         return bool ? PlaceholderAPIPlugin.booleanTrue() : PlaceholderAPIPlugin.booleanFalse();
@@ -70,7 +56,7 @@ public class HuskHomesExpansion extends PlaceholderExpansion {
 
         // Adapt the player to an OnlineUser
         final HuskHomesAPI huskHomesAPI = HuskHomesAPI.getInstance();
-        final OnlineUser player = huskHomesAPI.adaptUser(Bukkit.getPlayer(offlinePlayer.getUniqueId()));
+        final OnlineUser player = huskHomesAPI.adaptUser(offlinePlayer.getPlayer());
 
         // Return the requested data
         return switch (params) {
