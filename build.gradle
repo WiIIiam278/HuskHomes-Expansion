@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'net.william278'
-version '3.0'
+version '3.0.1'
 
 sourceCompatibility = 16
 targetCompatibility = 16
